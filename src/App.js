@@ -12,7 +12,6 @@ const Home = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height:100vh;
 
   .notFound{
     font-family: Roboto;
@@ -27,11 +26,14 @@ const Home = styled.div`
 
 function App() {
   const [weather, setWeather] = useState(null);
+  const [error, setError] = useState(null);
 
+  console.log(weather, error);
+  console.log("prabhu");
   return (
     <Home>
-        <SearchBar setWeather={setWeather}/>
-        { weather ? <WeatherCard weather={weather}/> : <div className="notFound"> City Not Found</div> }
+        <SearchBar setWeather={setWeather} setError = {setError}/>
+        { weather  ? <WeatherCard weather={weather}/> : <div className="notFound"> City Not Found</div> }
         <Footer/>
     </Home>
   );

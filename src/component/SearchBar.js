@@ -35,7 +35,7 @@ const SearchBar = styled.div`
             border:none;
             font-weight:900;
             font-size:20px;
-            background:#237642;
+            background:#00ad41;
             color:#f2f2f2;
             cursor: pointer;
         }
@@ -64,15 +64,18 @@ function current_location(lat, long)
     return params;
 }
 
-async function getWeatherByQuery(setWeather,query)
+async function getWeatherByQuery(setWeather, setError, query)
 {
     const response =  await axios(base_url+set_query(query));
-    console.log(response.data);
-    setWeather(response.data);
+    if(response)
+        setWeather(response.data);
+    else{
+        setError({cod:404});
+    }
 }
 
 
-export default ({setWeather}) => {
+export default ({setWeather, setError}) => {
     const [query, setQuery] = useState('');
 
     useEffect(()=>{
@@ -106,7 +109,7 @@ export default ({setWeather}) => {
             <button
                 onClick={() => { 
                     setQuery(query);
-                    getWeatherByQuery(setWeather,query);
+                    getWeatherByQuery(setWeather, setError, query);
                     }
                 }
                 >

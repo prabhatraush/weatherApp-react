@@ -150,12 +150,12 @@ export default  ({weather}) => {
                 <img className="city-icon" src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt={weather.weather[0].description} />
                 <span>{weather.main.temp}°C </span>
             </div>
-            <div class="suntime">
-                <div class="sunrise">
+            <div className="suntime">
+                <div className="sunrise">
                     <p>sunrise</p>
                      {unix_to_time(new Date(weather.sys.sunrise*1000))}
                 </div>
-                <div class="sunset">
+                <div className="sunset">
                     <p>sunset</p>
                     {unix_to_time(new Date(weather.sys.sunset*1000))}
                 </div>
