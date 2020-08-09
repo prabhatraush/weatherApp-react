@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Weather = styled.div`
     .card{
         max-width: 664px;
-        height:500px;
+        height:auto;
         margin:10px auto;
         background: rgba(196, 196, 196, 0.33);
         box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.25);
@@ -70,7 +70,6 @@ const Weather = styled.div`
     {
         .card{
             margin:10px 20px;
-            height:575px;
 
             .locname{
                 font-size: 45px;
