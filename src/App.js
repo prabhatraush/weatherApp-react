@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 import SearchBar  from './component/SearchBar';
 import WeatherCard from './component/weather';
+import Footer from './component/Footer';
 
 const Home = styled.div`
   background : url(background-img.jpg);
@@ -31,6 +32,7 @@ function App() {
     <Home>
         <SearchBar setWeather={setWeather}/>
         { weather ? <WeatherCard weather={weather}/> : <div className="notFound"> City Not Found</div> }
+        <Footer/>
     </Home>
   );
 }
