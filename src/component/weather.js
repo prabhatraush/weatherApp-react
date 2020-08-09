@@ -44,6 +44,10 @@ const Weather = styled.div`
            
         }
 
+        .toggleBtn{
+            text-align:right;
+        }
+
         .suntime{
             padding:10px 30px;
             border-radius: 20px;
@@ -154,30 +158,37 @@ export default  ({weather}) => {
                 {/* {weather.dt} */}
                 {dateBuilder(new Date(weather.dt*1000))}
             </div>
-            <div className="templbl">
-                <div>
-                <span class="toggleBtn" onClick={()=> {
+            <div className="toggleBtn">
+                <span  onClick={()=> {
                     setUnitToggle(!unit_toggle);
                     }}>
                          {unit_toggle ? <ToggleOnBtn/> :  <ToggleOffBtn/>} 
                 </span>
-                </div>
+            </div>
+            <div className="templbl">
+               
                 <img className="city-icon" src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt={weather.weather[0].description} />
                 {unit_toggle ? <span>{to_F(weather.main.temp, unit_toggle)}°F</span> : <span>{weather.main.temp}°C </span>}
                 
             </div>
-            <div className="suntime">
-                <div className="sunrise">
-                    <p>sunrise</p>
-                     {unix_to_time(new Date(weather.sys.sunrise*1000))}
-                </div>
-                <div className="sunset">
-                    <p>sunset</p>
-                    {unix_to_time(new Date(weather.sys.sunset*1000))}
-                </div>
-            </div>
+            
             <div className="temp-details">
                 {weather.weather[0].main}
+            </div>
+
+            <div className="suntime">
+                <div className="sunrise">
+                    <p>Sunrise</p>
+                     {unix_to_time(new Date(weather.sys.sunrise*1000))}
+                </div>
+                <div>
+                    <p>Humidity</p>
+                    {weather.main.humidity} %
+                </div>
+                <div className="sunset">
+                    <p>Sunset</p>
+                    {unix_to_time(new Date(weather.sys.sunset*1000))}
+                </div>
             </div>
         </div>
     </Weather>
