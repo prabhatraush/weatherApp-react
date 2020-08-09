@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import axios from 'axios';
 import {base_url, key} from './../api';
 
+import {SearchBtn} from '../icons/icons';
+
 const SearchBar = styled.div`
     max-width:664px;
     margin:0 auto;
@@ -13,12 +15,10 @@ const SearchBar = styled.div`
         width:100%;
         display:flex;
 
-        
-
         input[type="text"]{
             background: #FFFFFF;
             box-shadow: 0px 4px 19px rgba(0, 0, 0, 0.25);
-            width:75%;
+            width:70%;
             line-height:50px;
             border:none;
             outline:none;
@@ -29,7 +29,7 @@ const SearchBar = styled.div`
 
         button{
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            width:20%;
+            width:15%;
             height:52px;
             border:none;
             font-weight:900;
@@ -38,6 +38,11 @@ const SearchBar = styled.div`
             color:#f2f2f2;
             cursor: pointer;
         }
+    }
+
+    @media only screen and (max-width:500px)
+    {
+       
     }
 
 `;
@@ -108,7 +113,7 @@ export default ({setWeather}) => {
                     }
                 }
                 >
-                Search
+                <SearchBtn/>
             </button>
         </div>
     </SearchBar>

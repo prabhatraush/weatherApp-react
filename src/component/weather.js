@@ -3,16 +3,16 @@ import styled from 'styled-components';
 
 const Weather = styled.div`
     .card{
-    max-width: 664px;
-    height:471px;
-    margin:10px auto;
-    background: rgba(196, 196, 196, 0.33);
-    box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.25);
-    border-radius: 48px 0px;
-    text-align:center;
+        max-width: 664px;
+        height:500px;
+        margin:10px auto;
+        background: rgba(196, 196, 196, 0.33);
+        box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.25);
+        border-radius: 48px 0px;
+        padding:30px;
 
         .locname{
-            
+            text-align:center;
             font-family: Roboto;
             font-style: normal;
             font-weight: bold;
@@ -21,6 +21,7 @@ const Weather = styled.div`
         }
 
         .datelbl{
+            text-align:center;
             font-family: Rasa;
             font-style: normal;
             font-weight: bold;
@@ -34,7 +35,27 @@ const Weather = styled.div`
             font-weight: bold;
             font-size: 95px;
             line-height: 120px;
+            text-align:center;
+
+            img, span{
+                align-self:center;
+            }
+           
         }
+
+        .suntime{
+            padding:10px 30px;
+            border-radius: 20px;
+            background: #456543a2;
+            display:flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 25px;
+            color:#ffffff;
+
+        }
+
+
 
         .temp-details{
             font-family: Roboto;
@@ -42,8 +63,16 @@ const Weather = styled.div`
             font-weight: bold;
             font-size: 45px;
             line-height: 120px;
+            text-align:center;
         }
 
+
+
+    }
+
+    @media only screen and (max-width:500px)
+    {
+        max-width:310px;
     }
 
 `;
@@ -60,11 +89,32 @@ function dateBuilder(dt)
     let year = dt.getFullYear();
 
     return day+", "+date+" "+month+" "+year;
+}
 
+function unix_to_time(dt)
+{
+    var hours = dt.getHours();
+    var mm;
+    if(hours < 12 )
+    {
+        mm = "AM";
+    }
+    else{
+        mm = "PM";
+        hours = hours - 12;
+    }
+
+    var minutes = dt.getMinutes();
+    if(minutes < 10 )
+    {
+        minutes = "0" + minutes;
+    }
+    var seconds = "0" + dt.getSeconds();
+
+    return hours+":"+minutes+" "+mm;//+":"+seconds;
 }
 
 export default  ({weather}) => {
-    console.log(weather);
     return <Weather>
         <div className="card">
             <div className="locname">
@@ -73,10 +123,21 @@ export default  ({weather}) => {
             </div>
             <div className="datelbl">
                 {/* {weather.dt} */}
-                {dateBuilder(new Date())}
+                {dateBuilder(new Date(weather.dt*1000))}
             </div>
             <div className="templbl">
-                {weather.main.temp}°C
+                <img className="city-icon" src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt={weather.weather[0].description} />
+                <span>{weather.main.temp}°C </span>
+            </div>
+            <div class="suntime">
+                <div class="sunrise">
+                    <p>sunrise</p>
+                     {unix_to_time(new Date(weather.sys.sunrise*1000))}
+                </div>
+                <div class="sunset">
+                    <p>sunset</p>
+                    {unix_to_time(new Date(weather.sys.sunset*1000))}
+                </div>
             </div>
             <div className="temp-details">
                 {weather.weather[0].main}
