@@ -9,9 +9,11 @@ import {SearchBtn} from '../icons/icons';
 const SearchBar = styled.div`
     max-width:664px;
     margin:0 auto;
+    padding:20px;
 
     div{
         padding:20px;
+        width:100%;
         display:flex;
 
         input[type="text"]{
@@ -39,10 +41,6 @@ const SearchBar = styled.div`
         }
     }
 
-    @media only screen and (max-width:500px)
-    {
-       
-    }
 
 `;
 

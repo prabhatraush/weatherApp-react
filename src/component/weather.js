@@ -68,18 +68,31 @@ const Weather = styled.div`
 
     @media only screen and (max-width:500px)
     {
-        width:100%;
-        margin:10px 20px;
+        .card{
+            margin:10px 20px;
+            height:575px;
 
-        .templbl{
-            font-size: 75px;
-            line-height: 120px;
-            text-align:center;
-
-            img, span{
-                align-self:center;
+            .locname{
+                font-size: 45px;
             }
-           
+    
+            .datelbl{
+                font-size: 20px;
+            }
+
+            .templbl{
+                font-size: 75px;
+
+                img, span{
+                    align-self:center;
+                }
+            
+            }
+
+            .suntime{
+                padding:10px;
+                font-size:15px;
+            }
         }
     }
 
