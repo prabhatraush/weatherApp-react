@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
+import { ToggleOffBtn, ToggleOnBtn } from '../icons/icons';
 
 const Weather = styled.div`
     .card{
@@ -134,7 +135,15 @@ function unix_to_time(dt)
     return hours+":"+minutes+" "+mm;//+":"+seconds;
 }
 
+function to_F(cel, unit_toggle)
+{
+    if(unit_toggle)
+        return (cel*9/5)+32;
+}
+
 export default  ({weather}) => {
+    const [unit_toggle, setUnitToggle] = useState(false);
+
     return <Weather>
         <div className="card">
             <div className="locname">
@@ -146,8 +155,16 @@ export default  ({weather}) => {
                 {dateBuilder(new Date(weather.dt*1000))}
             </div>
             <div className="templbl">
+                <div>
+                <span class="toggleBtn" onClick={()=> {
+                    setUnitToggle(!unit_toggle);
+                    }}>
+                         {unit_toggle ? <ToggleOnBtn/> :  <ToggleOffBtn/>} 
+                </span>
+                </div>
                 <img className="city-icon" src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt={weather.weather[0].description} />
-                <span>{weather.main.temp}°C </span>
+                {unit_toggle ? <span>{to_F(weather.main.temp, unit_toggle)}°F</span> : <span>{weather.main.temp}°C </span>}
+                
             </div>
             <div className="suntime">
                 <div className="sunrise">
