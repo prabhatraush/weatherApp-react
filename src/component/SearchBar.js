@@ -12,7 +12,6 @@ const SearchBar = styled.div`
 
     div{
         padding:20px;
-        width:100%;
         display:flex;
 
         input[type="text"]{

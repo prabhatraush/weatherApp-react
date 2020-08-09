@@ -55,8 +55,6 @@ const Weather = styled.div`
 
         }
 
-
-
         .temp-details{
             font-family: Roboto;
             font-style: normal;
@@ -66,13 +64,23 @@ const Weather = styled.div`
             text-align:center;
         }
 
-
-
     }
 
     @media only screen and (max-width:500px)
     {
-        max-width:310px;
+        width:100%;
+        margin:10px 20px;
+
+        .templbl{
+            font-size: 75px;
+            line-height: 120px;
+            text-align:center;
+
+            img, span{
+                align-self:center;
+            }
+           
+        }
     }
 
 `;
