@@ -142,7 +142,7 @@ function unix_to_time(dt)
 function to_F(cel, unit_toggle)
 {
     if(unit_toggle)
-        return (cel*9/5)+32;
+        return ((cel*9/5)+32).toFixed(1);
 }
 
 export default  ({weather}) => {
