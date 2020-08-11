@@ -2,9 +2,13 @@ import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 
 import axios from 'axios';
-import {base_url, key} from './../api';
-
+// import {base_url, key} from './../api';
 import {SearchBtn} from '../icons/icons';
+
+require('dotenv').config();
+
+const base_url = process.env.REACT_APP_BASE_URL;
+const key = process.env.REACT_APP_KEY;
 
 const SearchBar = styled.div`
     max-width:664px;
@@ -73,7 +77,6 @@ async function getWeatherByQuery(setWeather, setError, query)
         setError({cod:404});
     }
 }
-
 
 export default ({setWeather, setError}) => {
     const [query, setQuery] = useState('');
